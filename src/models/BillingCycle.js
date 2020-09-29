@@ -10,7 +10,7 @@ const CreditSchema = new mongoose.Schema({
 const DebitSchema = new mongoose.Schema({
     name: {type: String, required: true},
     value: {type: Number, required: true, min: 0},
-    payed: {type: String, required: false, uppercase: true, enum: ["PAGO", "PENDENTE", "AGENDADO"]}
+    status: {type: String, required: false, uppercase: true, enum: ["PAGO", "PENDENTE", "AGENDADO"]}
 })
 
 
