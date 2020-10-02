@@ -8,13 +8,12 @@ BillingCycle.after('post', ErrorHandler).after('put', ErrorHandler)
 
 
 BillingCycle.route('get', (req, res, next) => {
-    BillingCycle.find({}, (err, docs) => {
-        if (!err) {
-            res.json(docs)
-        } else {
-            res.status(500).json({ errors: [err] })
-        }
-    })
+    console.log(`Skip: ${req.query.skip}, limit: ${req.query.limit}`)
+    BillingCycle.find({})
+        .skip(req.query.skip)
+        .limit(req.query.limit)
+        .then(docs => res.json(docs))
+        .catch(err =>  res.status(500).json({ errors: [err] }) )
 })
 
 
